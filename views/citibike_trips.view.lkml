@@ -2,7 +2,7 @@
 view: citibike_trips {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `applied-dialect-337706.covid_insights.citibike_trips`
+  sql_table_name: `applied-dialect-337706.covid_insights.citibike_trips_1`
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -15,6 +15,12 @@ view: citibike_trips {
     type: number
     value_format_name: id
     sql: ${TABLE}.bikeid ;;
+  }
+
+  dimension: concatee {
+    type: string
+    sql: concat(${starttime_raw},${bikeid}) ;;
+    primary_key: yes
   }
 
   measure: total_bikes {
@@ -126,6 +132,17 @@ view: citibike_trips {
     ]
     datatype: datetime
     sql: ${TABLE}.starttime ;;
+  }
+
+  dimension: hour {
+    type: number
+    sql: EXTRACT(HOUR FROM starttime)  ;;
+
+  }
+
+  dimension: day_of_week {
+    type: string
+    sql: FORMAT_DATE('%A', starttime)  ;;
   }
 
   dimension_group: stoptime {
