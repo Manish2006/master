@@ -27,6 +27,11 @@ view: citibike_trips {
     sql: ${TABLE}.birth_year ;;
   }
 
+  dimension: Age {
+    type: number
+    sql: DATE_DIFF(CURRENT_DATE(), DATE(birth_year, 1, 1), YEAR) ;;
+  }
+
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
