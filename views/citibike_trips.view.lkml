@@ -143,6 +143,20 @@ view: citibike_trips {
   dimension: day_of_week {
     type: string
     sql: FORMAT_DATE('%A', starttime)  ;;
+    order_by_field: status_list
+  }
+
+  dimension: status_list {
+    type: number
+    sql: case when ${day_of_week}='Monday' then 1
+    when ${day_of_week}='Tuesday' then 2
+    when ${day_of_week}='Wednesday' then 3
+    when ${day_of_week}='Thursday' then 4
+    when ${day_of_week}='Friday' then 5
+    when ${day_of_week}='Saturday' then 6
+    when ${day_of_week}='Sunday' then 7
+    else 0
+    end;;
   }
 
   dimension_group: stoptime {

@@ -1,6 +1,6 @@
 view: top_10_start_station {
   derived_table: {
-    sql: SELECT start_station_latitude,count(*) as total FROM `applied-dialect-337706.covid_insights.citibike_trips`
+    sql: SELECT start_station_latitude,count(*) as total FROM `applied-dialect-337706.covid_insights.citibike_trips_1`
       WHERE start_station_latitude IS NOT NULL
       group by 1
       order by 2 desc limit 10
