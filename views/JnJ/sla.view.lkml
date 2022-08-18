@@ -234,6 +234,7 @@ view: sla {
 
   }
 
+
   dimension_group: resolved {
     type: time
     timeframes: [

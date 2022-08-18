@@ -4,6 +4,8 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 
 explore: citibike_trips {}
 explore: citibike_stations {}
+explore: baseball {}
+explore: start_and_end_station {}
 explore: top_10_start_station {
   view_name: citibike_trips
   join: top_10_start_station {
